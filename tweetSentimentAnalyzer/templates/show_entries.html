@@ -1,0 +1,31 @@
+
+{% extends "layout.html" %}
+{% block body %}
+
+<form>
+  Input your Hashtag Here:<br>
+  #:<input type="text" name="hash_tag">
+  <br><br>
+  {% if word != "" %}
+  <h2> Displaying results for "#{{ hash_tag }}" </h2><br>
+  <p style="color:{{ color }}">Value = {{ value }}</p>
+
+  Your Sentiment Analysis:<br>
+
+  <p> Negative Votes: {{ prediction[0] }} </p>
+  <p> Positive Votes: {{ prediction[1] }} </p>
+
+  <ul class=entries>
+  {% for result in results %}
+    {% if result[1] == 1 %} 
+      <li style="color: green">{{ result }}</li>
+    {% else %}
+      <li style="color: red">{{ result }}</li>
+    {% endif %}
+  {% endfor %}
+</ul>
+  {% endif %}
+
+</form>
+
+{% endblock %}
